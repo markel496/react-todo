@@ -1,0 +1,45 @@
+.inputContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.closeIconInput {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  @media (min-width: 992px) {
+    // hhv snippet
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.inputName {
+  width: 100%;
+  display: block;
+  padding: 10px 30px 10px 20px;
+  border-radius: 10px;
+  border: 2px solid rgba(#000, 0.3);
+  font-size: 16px;
+  transition: border 0.2s ease-in;
+  &::placeholder {
+    transition: 0.2s ease-in;
+  }
+  &:focus {
+    border: 2px solid rgba(#000, 0.6);
+  }
+}
+
+.error {
+  border: 2px solid red;
+  &::placeholder {
+    color: rgba(red, 0.6);
+  }
+}

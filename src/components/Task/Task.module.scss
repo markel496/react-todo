@@ -1,0 +1,200 @@
+.task {
+  min-width: 300px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 2px solid rgba(#000, 0.3);
+  border-radius: 1em;
+  background-color: #fff;
+  box-shadow: 4px 4px 5px 0px #acc1ac;
+  transition: border-color 0.2s ease-in;
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+  @media (min-width: 420px) {
+    resize: horizontal;
+    overflow: auto;
+  }
+  animation: create 0.2s ease-in;
+}
+.taskInProgress {
+  border: 2px solid rgb(41, 41, 203);
+}
+.taskIsCompleted {
+  border: 2px solid rgb(82, 201, 31);
+  & p:first-of-type {
+    margin-top: 15px;
+  }
+}
+.taskEdit {
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.taskContainer {
+  position: relative;
+  width: calc(100% - 60px); //ширина чекбокса + margin
+}
+
+.checkbox {
+  min-width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin: 0px 30px 0px 0px;
+}
+
+.taskName {
+  width: calc(100% - 50px);
+  // white-space: nowrap; /* Текст не переносится */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+  margin: 0px 0px 15px 0px;
+  transition: color 0.2s ease-in;
+  color: rgba(#000, 0.6);
+}
+
+.taskDescr {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 5px;
+  transition: 0.2s ease-in;
+  color: rgba(#000, 0.6);
+}
+
+.taskNameInProgress,
+.taskDescrInProgress {
+  transition: color 0.2s ease-in;
+  color: rgb(41, 41, 203);
+}
+.taskNameIsCompleted,
+.taskDescrIsCompleted {
+  transition: color 0.2s ease-in;
+  color: rgb(82, 201, 31);
+}
+.taskNameIsCompleted {
+  margin: 0;
+}
+
+.editButton,
+.removeButton {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  border: none;
+  cursor: pointer;
+  background: 0 0;
+  transition: 0.2s ease-in;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  @media (min-width: 992px) {
+    &:hover {
+      transform: scale(1.2);
+      svg {
+        fill: blue;
+      }
+    }
+  }
+}
+
+.removeButton {
+  right: 0;
+  @media (min-width: 992px) {
+    &:hover {
+      svg {
+        fill: red;
+      }
+    }
+  }
+}
+
+.startButton,
+.stopButton,
+.changeButton {
+  border: none;
+  cursor: pointer;
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: rgb(41, 41, 203);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  transition: 0.2s ease-in;
+  @media (min-width: 992px) {
+    // hhv snippet
+    &:hover {
+      background-color: rgb(22, 22, 144);
+    }
+  }
+}
+.stopButton {
+  background-color: rgb(222, 71, 57);
+  @media (min-width: 992px) {
+    // hhv snippet
+    &:hover {
+      background-color: rgb(188, 61, 50);
+    }
+  }
+  &._edit {
+    margin: 0;
+  }
+}
+.changeButton {
+  margin: 0px 15px 0px 0px;
+  background-color: rgb(82, 201, 31);
+  @media (min-width: 992px) {
+    // hhv snippet
+    &:hover {
+      background-color: rgb(63, 161, 21);
+    }
+  }
+}
+.buttonsContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px dotted rgb(41, 41, 203);
+  animation: rotate 2.5s infinite linear, opacity 0.2s ease-in;
+}
+
+@keyframes create {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
