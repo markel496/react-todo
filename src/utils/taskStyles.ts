@@ -1,7 +1,11 @@
 import styles from '../components/Task/Task.module.scss'
 
 //Функции возвращают нужные стили в зависимости от состояния компонента
-export function getContainerStyle(isCompleted, inProgress, edit) {
+export function getContainerStyle(
+  isCompleted: boolean,
+  inProgress: boolean,
+  edit: boolean
+) {
   return !isCompleted
     ? !inProgress
       ? !edit
@@ -15,7 +19,7 @@ export function getContainerStyle(isCompleted, inProgress, edit) {
     : styles.task + ' ' + styles.taskIsCompleted + ' ' + styles.taskEdit
 }
 
-export function getTaskNameStyle(isCompleted, inProgress) {
+export function getTaskNameStyle(isCompleted: boolean, inProgress: boolean) {
   return !isCompleted
     ? !inProgress
       ? styles.taskName
@@ -23,7 +27,7 @@ export function getTaskNameStyle(isCompleted, inProgress) {
     : styles.taskName + ' ' + styles.taskNameIsCompleted
 }
 
-export function getTaskDescrStyle(isCompleted, inProgress) {
+export function getTaskDescrStyle(isCompleted: boolean, inProgress: boolean) {
   return !isCompleted
     ? !inProgress
       ? styles.taskDescr

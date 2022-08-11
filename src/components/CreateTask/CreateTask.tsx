@@ -1,14 +1,20 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef, SetStateAction, Dispatch } from 'react'
 import styles from './CreateTask.module.scss'
 import Input from '../UI/Input/Input'
 import Textarea from '../UI/Textarea/Textarea'
 import { useHandleClick } from '../../hooks/useHandleClick'
+import { ITask } from '../../models'
 
-const CreateTask = ({ tasks, addTask }) => {
+type TProps = {
+  tasks: ITask[]
+  addTask: Dispatch<SetStateAction<ITask[]>>
+}
+
+const CreateTask = ({ tasks, addTask }: TProps) => {
   const [inputValue, setInputValue] = useState('') //Состояние input
   const [textareaValue, setTextareaValue] = useState('') //Состояние textarea
   const [isValid, setIsValid] = useState(true) // Состояние для того, чтобы запрещать добавление задачи и изменять стиль инпута
-  const buttonRef = useRef(null) // Ref на кнопку "Добавить", чтобы отслеживать клик по ней с помощью хука useHandleClick
+  const buttonRef = useRef<HTMLButtonElement>(null) // Ref на кнопку "Добавить", чтобы отслеживать клик по ней с помощью хука useHandleClick
 
   //Добавление задачи в список
   const addHandler = () => {

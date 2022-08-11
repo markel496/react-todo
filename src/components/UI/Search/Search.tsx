@@ -1,16 +1,21 @@
-import React, { useRef } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
 import styles from './Search.module.scss'
 import closeIcon from '../../../img/close_icon.svg'
 
-const Search = ({ value, onChange }) => {
-  const searchInput = useRef(null)
+type TProps = {
+  value: string
+  onChange: Dispatch<SetStateAction<string>>
+}
+
+const Search = ({ value, onChange }: TProps) => {
+  const searchInput = useRef<HTMLInputElement>(null)
 
   const clearInput = () => {
     onChange('')
-    searchInput.current.focus()
+    searchInput.current!.focus()
   }
 
-  const changeInput = (event) => {
+  const changeInput = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value)
   }
 

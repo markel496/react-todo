@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useRef, useState } from 'react'
 import styles from './Task.module.scss'
 import { ReactComponent as RemoveIcon } from './trash.svg'
 import { ReactComponent as EditIcon } from './edit.svg'
@@ -10,8 +10,20 @@ import {
   getTaskNameStyle,
   getTaskDescrStyle,
 } from '../../utils/taskStyles'
+import { ITask } from '../../models'
 
-const Task = ({ task, updateTasks, removeTask }) => {
+type TProps = {
+  task: ITask
+  updateTasks: (
+    id: ITask['id'],
+    stage: string,
+    name?: ITask['name'],
+    descr?: ITask['descr']
+  ) => void
+  removeTask: (deletedTaskId: ITask['id']) => void
+}
+
+const Task = ({ task, updateTasks, removeTask }: TProps) => {
   const [{ id, name, descr, inProgress, isCompleted, editing }, setTask] =
     useState(task) //Методом деструктуризации получаю свойства объекта task
   const [edit, setEdit] = useState(editing) //Состояние редактирования

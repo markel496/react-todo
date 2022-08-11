@@ -1,19 +1,26 @@
-import React, { useRef } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
 import styles from './Input.module.scss'
 import closeIcon from '../../../img/close_icon.svg'
 
-const Input = ({ value, onChange, valid, setIsValid }) => {
-  const inputRef = useRef(null) //для фокуса
+type TProps = {
+  value: string
+  onChange: Dispatch<SetStateAction<string>>
+  valid: boolean
+  setIsValid: Dispatch<SetStateAction<boolean>>
+}
+
+const Input = ({ value, onChange, valid, setIsValid }: TProps) => {
+  const inputRef = useRef<HTMLInputElement>(null) //для фокуса
 
   //Изменяю состояние value
-  const changeInput = (event) => {
+  const changeInput = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value)
     setIsValid(true)
   }
 
   const clearInput = () => {
     onChange('')
-    inputRef.current.focus() // Фокус на инпут после того, как нажали на крестик
+    inputRef.current!.focus() // Фокус на инпут после того, как нажали на крестик
   }
 
   return (

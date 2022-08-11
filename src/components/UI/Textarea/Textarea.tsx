@@ -1,17 +1,22 @@
-import React, { useRef } from 'react'
+import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
 import styles from './Textarea.module.scss'
 import closeIcon from '../../../img/close_icon.svg'
 
-const Textarea = ({ value, onChange }) => {
-  const textareaRef = useRef(null)
+type TProps = {
+  value: string
+  onChange: Dispatch<SetStateAction<string>>
+}
 
-  const changeTextarea = (event) => {
+const Textarea = ({ value, onChange }: TProps) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  const changeTextarea = (event: ChangeEvent<HTMLTextAreaElement>) => {
     onChange(event.target.value)
   }
 
   const clearTextarea = () => {
     onChange('')
-    textareaRef.current.focus()
+    textareaRef.current!.focus()
   }
 
   return (
@@ -29,7 +34,6 @@ const Textarea = ({ value, onChange }) => {
         ref={textareaRef}
         value={value}
         className={styles.textareaDescr}
-        type="text"
         placeholder="Описание (не обязательно)..."
         onChange={(e) => changeTextarea(e)}
       />

@@ -1,17 +1,28 @@
-import React, { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import Search from '../UI/Search/Search'
 import Task from '../Task/Task'
 import styles from './TaskList.module.scss'
+import { ITask } from '../../models'
 
-const TaskList = ({ tasks, setTasks }) => {
+type TProps = {
+  tasks: ITask[]
+  setTasks: Dispatch<SetStateAction<ITask[]>>
+}
+
+const TaskList = ({ tasks, setTasks }: TProps) => {
   const [searchValue, setSearchValue] = useState('') //Состояние инпута, который отвечает за поиск
 
   //Функция удаления задачи
-  const removeTask = (deletedTaskId) =>
+  const removeTask = (deletedTaskId: ITask['id']) =>
     setTasks(tasks.filter((task) => task.id !== deletedTaskId))
 
   //Функция изменяет состояние tasks, когда в task происходят изменения
-  const updateTasks = (id, stage, name, descr) => {
+  const updateTasks = (
+    id: ITask['id'],
+    stage: string,
+    name?: ITask['name'],
+    descr?: ITask['descr']
+  ) => {
     setTasks(
       tasks.map((task) => {
         if (task.id === id) {
@@ -33,7 +44,7 @@ const TaskList = ({ tasks, setTasks }) => {
               return { ...task, editing: !task.editing ? true : false }
 
             case 'update':
-              return { ...task, name, descr, editing: false }
+              return { ...task, name: name!, descr: descr!, editing: false }
           }
         }
         return task
