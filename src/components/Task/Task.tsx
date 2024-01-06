@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from './Task.module.scss'
 import { ReactComponent as RemoveIcon } from './trash.svg'
 import { ReactComponent as EditIcon } from './edit.svg'
@@ -8,7 +8,7 @@ import { useHandleClick } from '../../hooks/useHandleClick'
 import {
   getContainerStyle,
   getTaskNameStyle,
-  getTaskDescrStyle,
+  getTaskDescrStyle
 } from '../../utils/taskStyles'
 import { ITask } from '../../models'
 
@@ -24,8 +24,10 @@ type TProps = {
 }
 
 const Task = ({ task, updateTasks, removeTask }: TProps) => {
-  const [{ id, name, descr, inProgress, isCompleted, editing }, setTask] =
-    useState(task) //Методом деструктуризации получаю свойства объекта task
+  const [
+    { id, name, descr, createdAt, inProgress, isCompleted, editing },
+    setTask
+  ] = useState(task) //Методом деструктуризации получаю свойства объекта task
   const [edit, setEdit] = useState(editing) //Состояние редактирования
   const [inputValue, setInputValue] = useState(name) // состояние input
   const [textareaValue, setTextareaValue] = useState(descr) // состояние textarea
@@ -102,7 +104,11 @@ const Task = ({ task, updateTasks, removeTask }: TProps) => {
             >
               <RemoveIcon />
             </button>
-            <h4 className={styleTaskName}>{name}</h4>
+            <div className={styles.taskHeaderContainer}>
+              <h4 className={styleTaskName}>{name}</h4>
+              <span className={styles.taskCreateDate}>{createdAt}</span>
+            </div>
+
             {/* Если в textarea был ввод с новой строки, создаю массив строк */}
             {descr &&
               descr.split('\n').map((el, i) => (

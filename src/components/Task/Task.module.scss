@@ -38,6 +38,20 @@
   width: calc(100% - 60px); //ширина чекбокса + margin
 }
 
+.taskHeaderContainer {
+  width: calc(100% - 50px);
+  // white-space: nowrap; /* Текст не переносится */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+  margin: 0px 0px 15px 0px;
+  transition: color 0.2s ease-in;
+}
+
+.taskCreateDate {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
 .checkbox {
   min-width: 30px;
   height: 30px;
@@ -46,13 +60,8 @@
 }
 
 .taskName {
-  width: calc(100% - 50px);
-  // white-space: nowrap; /* Текст не переносится */
-  overflow: hidden; /* Обрезаем всё за пределами блока */
-  text-overflow: ellipsis; /* Добавляем многоточие */
-  margin: 0px 0px 15px 0px;
-  transition: color 0.2s ease-in;
   color: rgba(#000, 0.6);
+  margin-right: 5px;
 }
 
 .taskDescr {

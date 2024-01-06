@@ -5,6 +5,9 @@ import Textarea from '../UI/Textarea/Textarea'
 import { useHandleClick } from '../../hooks/useHandleClick'
 import { ITask } from '../../models'
 
+import moment from 'moment'
+import 'moment/locale/ru'
+
 type TProps = {
   tasks: ITask[]
   addTask: Dispatch<SetStateAction<ITask[]>>
@@ -25,11 +28,12 @@ const CreateTask = ({ tasks, addTask }: TProps) => {
           id: Math.random().toString(36).substring(2, 9), //уникальный ключ в виде строки
           name: inputValue.replace(/\s{2,}/g, ' ').trim(), //удаляет лишние пробелы
           descr: textareaValue.replace(/\s{2,}/g, ' ').trim(),
+          createdAt: moment().format('l в LT'), // Дата создания
           inProgress: false, //В процессе/не в процессе
           isCompleted: false, //Завершена/не завершена
-          editing: false, //редактируется/не редактируется
+          editing: false //редактируется/не редактируется
         },
-        ...tasks,
+        ...tasks
       ])
       setInputValue('')
       setTextareaValue('')
