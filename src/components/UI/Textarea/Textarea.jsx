@@ -29,7 +29,6 @@ const Textarea = ({ value, onChange }) => {
         ref={textareaRef}
         value={value}
         className={styles.textareaDescr}
-        type="text"
         placeholder="Описание (не обязательно)..."
         onChange={(e) => changeTextarea(e)}
       />
