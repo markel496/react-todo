@@ -12,7 +12,7 @@ export function useHandleClick(value, setValue, buttonRef) {
       ? document.removeEventListener('click', handleClick)
       : document.addEventListener('click', handleClick)
 
-    //отрабатывает, когда компнент будет уничтожаться
+    //отрабатывает, когда компонент будет уничтожаться
     return () => document.removeEventListener('click', handleClick)
-  }, [value])
+  }, [value, buttonRef, setValue])
 }
